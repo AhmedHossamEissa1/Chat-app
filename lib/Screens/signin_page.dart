@@ -3,6 +3,7 @@ import 'package:chat_app1/Screens/signUp_page.dart';
 import 'package:chat_app1/Widgets/custom_Button.dart';
 import 'package:chat_app1/Widgets/custom_textField.dart';
 import 'package:chat_app1/constants.dart';
+import 'package:chat_app1/cubits/chatCubit/chat_cubit.dart';
 import 'package:chat_app1/cubits/signInCubit/signIn_cubit.dart';
 import 'package:chat_app1/cubits/signInCubit/signIn_states.dart';
 import 'package:chat_app1/helper/snakebarfunctions.dart';
@@ -31,7 +32,9 @@ class SigninPage extends StatelessWidget {
           isloading = false;
           showSnackbar(context, 'Success', Colors.green);
           await Future.delayed(await Duration(milliseconds: 200));
+
           Navigator.pushNamed(context, ChatPage.id, arguments: email);
+          BlocProvider.of<ChatCubit>(context).getMessages();
         } else if (state is FailSignIn) {
           isloading = false;
           showSnackbar(context, state.msg, Colors.red);
@@ -65,7 +68,6 @@ class SigninPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 105),
                   Form(
-                    
                     key: globalKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
