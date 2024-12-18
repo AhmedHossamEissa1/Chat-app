@@ -65,6 +65,7 @@ class SigninPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 105),
                   Form(
+                    
                     key: globalKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
